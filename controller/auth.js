@@ -10,7 +10,7 @@ const registerController = async (req, res, next) => {
     const user = await registerService({ name, email, password });
     return res.status(201).json({ message: "User Created successfully", user });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
 const loginController = async (req, res, next) => {
@@ -19,7 +19,7 @@ const loginController = async (req, res, next) => {
     const token = await loginService({ email, password });
     return res.status(200).json({ message: "login Successfully", token });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
 
